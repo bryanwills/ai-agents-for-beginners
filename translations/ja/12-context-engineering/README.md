@@ -154,7 +154,7 @@ AIエージェントが管理する必要があるコンテキストの種類に
 
 ## コンテキストエンジニアリングについてさらに質問がありますか？
 
-Join the [Microsoft Foundry Discord](https://aka.ms/ai-agents/discord) to meet with other learners, attend office hours and get your AI Agents questions answered.
+[Microsoft Foundry Discord](https://aka.ms/ai-agents/discord)に参加して、他の学習者と交流したり、オフィスアワーに参加したり、AIエージェントに関する質問への回答を得たりしましょう。
 
 ---
 
