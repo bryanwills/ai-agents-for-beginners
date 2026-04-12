@@ -15,7 +15,7 @@
 #### Supported via GitHub Action (Automated & Always Up-to-Date)
 
 <!-- CO-OP TRANSLATOR LANGUAGES TABLE START -->
-[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh-CN/README.md) | [Chinese (Traditional, Hong Kong)](../zh-HK/README.md) | [Chinese (Traditional, Macau)](../zh-MO/README.md) | [Chinese (Traditional, Taiwan)](../zh-TW/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../pt-BR/README.md) | [Portuguese (Portugal)](../pt-PT/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
+[Arabic](../ar/README.md) | [Bengali](../bn/README.md) | [Bulgarian](../bg/README.md) | [Burmese (Myanmar)](../my/README.md) | [Chinese (Simplified)](../zh-CN/README.md) | [Chinese (Traditional, Hong Kong)](../zh-HK/README.md) | [Chinese (Traditional, Macau)](../zh-MO/README.md) | [Chinese (Traditional, Taiwan)](../zh-TW/README.md) | [Croatian](../hr/README.md) | [Czech](../cs/README.md) | [Danish](../da/README.md) | [Dutch](../nl/README.md) | [Estonian](../et/README.md) | [Finnish](../fi/README.md) | [French](../fr/README.md) | [German](../de/README.md) | [Greek](../el/README.md) | [Hebrew](../he/README.md) | [Hindi](../hi/README.md) | [Hungarian](../hu/README.md) | [Indonesian](../id/README.md) | [Italian](../it/README.md) | [Japanese](../ja/README.md) | [Kannada](../kn/README.md) | [Khmer](../km/README.md) | [Korean](../ko/README.md) | [Lithuanian](../lt/README.md) | [Malay](../ms/README.md) | [Malayalam](../ml/README.md) | [Marathi](../mr/README.md) | [Nepali](../ne/README.md) | [Nigerian Pidgin](../pcm/README.md) | [Norwegian](../no/README.md) | [Persian (Farsi)](../fa/README.md) | [Polish](../pl/README.md) | [Portuguese (Brazil)](../pt-BR/README.md) | [Portuguese (Portugal)](../pt-PT/README.md) | [Punjabi (Gurmukhi)](../pa/README.md) | [Romanian](../ro/README.md) | [Russian](../ru/README.md) | [Serbian (Cyrillic)](../sr/README.md) | [Slovak](../sk/README.md) | [Slovenian](../sl/README.md) | [Spanish](../es/README.md) | [Swahili](../sw/README.md) | [Swedish](../sv/README.md) | [Tagalog (Filipino)](../tl/README.md) | [Tamil](../ta/README.md) | [Telugu](../te/README.md) | [Thai](../th/README.md) | [Turkish](../tr/README.md) | [Ukrainian](../uk/README.md) | [Urdu](../ur/README.md) | [Vietnamese](../vi/README.md)
 
 > **Prefer to Clone Locally?**
 >
@@ -51,7 +51,7 @@
 
 This course has lessons covering the fundamentals of building AI Agents. Each lesson covers its own topic so start wherever you like!
 
-There is multi-language support for this course. Go to our [available languages here](../..). 
+There is multi-language support for this course. Go to our [available languages here](#-multi-language-support). 
 
 If this is your first time building with Generative AI models, check out our [Generative AI For Beginners](https://aka.ms/genai-beginners) course, which includes 21 lessons on building with GenAI.
 
@@ -65,17 +65,14 @@ If you get stuck or have any questions about building AI Agents, join our dedica
 
 Each lesson in this course includes code examples, which can be found in the code_samples folder. You can [fork this repo](https://github.com/microsoft/ai-agents-for-beginners/fork) to create your own copy.  
 
-The code example in these exercises, utilize Microsoft Foundry and GitHub Model Catalogs for interacting with Language Models:
+The code examples in these exercises utilize Microsoft Agent Framework with Azure AI Foundry Agent Service V2:
 
-- [Github Models](https://aka.ms/ai-agents-beginners/github-models) - Free / Limited
 - [Microsoft Foundry](https://aka.ms/ai-agents-beginners/ai-foundry) - Azure Account Required
 
-This course also uses the following AI Agent frameworks and services from Microsoft:
+This course uses the following AI Agent frameworks and services from Microsoft:
 
-- [Microsoft Agent Framework (MAF) - New!](https://aka.ms/ai-agents-beginners/agent-framewrok)
-- [Azure AI Agent Service](https://aka.ms/ai-agents-beginners/ai-agent-service)
-- [Semantic Kernel](https://aka.ms/ai-agents-beginners/semantic-kernel)
-- [AutoGen](https://aka.ms/ai-agents/autogen)
+- [Microsoft Agent Framework (MAF)](https://aka.ms/ai-agents-beginners/agent-framewrok)
+- [Azure AI Foundry Agent Service V2](https://aka.ms/ai-agents-beginners/ai-agent-service)
 
 
 For more information on running the code for this course, go to the [Course Setup](./00-course-setup/README.md).
@@ -89,7 +86,7 @@ Do you have suggestions or found spelling or code errors? [Raise an issue](https
 ## 📂 Each lesson includes
 
 - A written lesson located in the README and a short video
-- Python code samples supporting Microsoft Foundry and Github Models (Free)
+- Python code samples using Microsoft Agent Framework with Azure AI Foundry
 - Links to extra resources to continue your learning
 
 
@@ -201,5 +198,5 @@ If you have product feedback or errors while building visit:
 
 <!-- CO-OP TRANSLATOR DISCLAIMER START -->
 **Disclaimer**:
-This document has been translated using the AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
+This document has been translated using AI translation service [Co-op Translator](https://github.com/Azure/co-op-translator). While we strive for accuracy, please be aware that automated translations may contain errors or inaccuracies. The original document in its native language should be considered the authoritative source. For critical information, professional human translation is recommended. We are not liable for any misunderstandings or misinterpretations arising from the use of this translation.
 <!-- CO-OP TRANSLATOR DISCLAIMER END -->
