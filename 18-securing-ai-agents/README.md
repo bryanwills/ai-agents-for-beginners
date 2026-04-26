@@ -1,6 +1,6 @@
-[![Securing AI Agents with Cryptographic Receipts](./images/lesson-18-thumbnail.png)](https://youtu.be/PLACEHOLDER_VIDEO_ID)
+[Watch the lesson video: Securing AI Agents with Cryptographic Receipts](https://youtu.be/PLACEHOLDER_VIDEO_ID)
 
-> _(Click the image above to view video of this lesson)_
+> _(Lesson video and thumbnail to be added by the Microsoft content team post-merge, matching the lesson 14 / 15 pattern.)_
 
 # Securing AI Agents with Cryptographic Receipts
 
@@ -74,7 +74,11 @@ A minimal receipt looks like this:
   "timestamp": "2026-04-25T14:30:00Z",
   "sequence": 47,
   "previous_receipt_hash": "sha256:9d4e6a...",
-  "signature": "ed25519:c5af83..."
+  "signature": {
+    "alg": "EdDSA",
+    "sig": "c5af83...",
+    "public_key": "8f3b2c..."
+  }
 }
 ```
 
@@ -105,33 +109,46 @@ import base64
 from nacl import signing
 from jcs import canonicalize  # RFC 8785 canonical JSON
 
+def b64url_nopad(data: bytes) -> str:
+    return base64.urlsafe_b64encode(data).decode("ascii").rstrip("=")
+
+def sha256_canonical(obj) -> str:
+    """SHA-256 of a Python object's JCS-canonical JSON form."""
+    return f"sha256:{hashlib.sha256(canonicalize(obj)).hexdigest()}"
+
 # Generate or load a signing key (in production, store in a key vault)
 signing_key = signing.SigningKey.generate()
 verify_key = signing_key.verify_key
 
 # Build the receipt payload (no signature yet)
+tool_args = {"origin": "SYD", "destination": "LAX"}
+tool_result = [{"flight": "QF11", "price": 1850, "stops": 0}]
+
 payload = {
     "type": "agent.tool_call.v1",
     "agent_id": "contoso-travel-bot",
     "tool_name": "lookup_flights",
-    "tool_args_hash": hash_args({"origin": "SYD", "dest": "LAX"}),
-    "result_hash": hash_result(flight_results),
+    "tool_args_hash": sha256_canonical(tool_args),
+    "result_hash": sha256_canonical(tool_result),
     "policy_id": "contoso-travel-policy-v3",
     "timestamp": "2026-04-25T14:30:00Z",
-    "sequence": 47,
-    "previous_receipt_hash": prior_chain_link,
+    "sequence": 0,
+    "previous_receipt_hash": None,
 }
 
-# Canonicalize, hash, sign
+# Canonicalize, hash, sign.
 canonical_bytes = canonicalize(payload)
 message_hash = hashlib.sha256(canonical_bytes).digest()
-signature = signing_key.sign(message_hash).signature
+signature_bytes = signing_key.sign(message_hash).signature
 
-# Attach the signature
+# Attach a structured signature object.
 receipt = {
     **payload,
-    "signature": base64.urlsafe_b64encode(signature).decode().rstrip("="),
-    "public_key": base64.urlsafe_b64encode(bytes(verify_key)).decode().rstrip("="),
+    "signature": {
+        "alg": "EdDSA",
+        "sig": b64url_nopad(signature_bytes),
+        "public_key": b64url_nopad(bytes(verify_key)),
+    },
 }
 ```
 
@@ -148,24 +165,25 @@ from nacl import signing
 from nacl.exceptions import BadSignatureError
 from jcs import canonicalize
 
-def verify_receipt(receipt: dict) -> bool:
-    # Separate the signature from the payload
-    signed_payload = {k: v for k, v in receipt.items()
-                      if k not in ("signature", "public_key")}
+def b64url_decode(s: str) -> bytes:
+    padding = "=" * ((4 - len(s) % 4) % 4)
+    return base64.urlsafe_b64decode(s + padding)
 
-    # Recompute the canonical hash
-    canonical_bytes = canonicalize(signed_payload)
+def verify_receipt(receipt: dict) -> bool:
+    # The signature is a structured object: {"alg", "sig", "public_key"}.
+    sig_obj = receipt.get("signature")
+    if not sig_obj or sig_obj.get("alg") != "EdDSA":
+        return False
+
+    # Reconstruct the payload that was actually signed (everything except signature).
+    payload = {k: v for k, v in receipt.items() if k != "signature"}
+
+    canonical_bytes = canonicalize(payload)
     message_hash = hashlib.sha256(canonical_bytes).digest()
 
-    # Decode the signature and public key
-    signature = base64.urlsafe_b64decode(receipt["signature"] + "==")
-    public_key = signing.VerifyKey(
-        base64.urlsafe_b64decode(receipt["public_key"] + "==")
-    )
-
-    # Verify
     try:
-        public_key.verify(message_hash, signature)
+        verify_key = signing.VerifyKey(b64url_decode(sig_obj["public_key"]))
+        verify_key.verify(message_hash, b64url_decode(sig_obj["sig"]))
         return True
     except BadSignatureError:
         return False
